@@ -1,8 +1,15 @@
-import React, { Component } from 'react';
+import React from 'react';
 import logo from './logo.svg';
+import Team from './Team';
 import './App.css';
 
-class App extends Component {
+const team = [
+  { "name": "Flynn Marrinson", "number": "13" },
+  { "name": "Claire Marrinson", "number": "23" },
+  { "name": "Maggie Marrinson", "number": "17" }
+];
+
+class App extends React.Component {
   render() {
     return (
       <div className="App">
@@ -10,9 +17,7 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h2>Welcome to React</h2>
         </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+		<Team players={team}/>
       </div>
     );
   }
