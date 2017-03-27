@@ -8,13 +8,7 @@
     float: left; /* Float the buttons side by side */
 }
 
-.ShotButtons-group button.attempted {
-    background-color: white; /* White background */
-	border: 3px solid green;
-	margin: 3px;
-}
-
-.ShotButtons-group button.made {
+.ShotButtons-group button.selected {
     background-color: green; /* green background */
     border: 1px solid green; /* Green border */
     color: white; /* White text */

@@ -5,36 +5,51 @@ class ShotButton extends React.Component {
   constructor(props) {
 	super(props);
 	this.handleClick = this.handleClick.bind(this);
-	this.state = { "state": "idle" };
   }
   handleClick(e) {
-	const nextState = {
-	  "idle": "attempted",
-	  "attempted": "made",
-	  "made": "idle"
-	};
-	e.preventDefault();
+	//e.preventDefault();		// do we need this?
 	this.setState(prevState => {
-	  console.log("click " + prevState.state + " -> " + nextState[prevState.state] );
-	  return { "state": nextState[prevState.state] };
+	  const newSelected = ! prevState.selected;
+	  console.log("click " + this.props.type + " -> " + newSelected);
+	  this.props.onClick(this.props.type, newSelected);
+	  return { "selected": newSelected };
 	});
   }
 
   render() {
-	console.log("render " + this.state.state);
+	const className = this.props.selected ? "selected" : "unselected";
 	return (
-	  <button className={this.state.state} onClick={this.handleClick}>{this.props.type}</button>
+	  <button className={className} onClick={this.handleClick}>{this.props.type}</button>
 	);
   }
 }
 
 export default class ShotButtons extends React.Component {
+  constructor(props) {
+	super(props);
+	this.state = {
+	  "types": [ "2", "1", "3" ],
+	  "pick": "none"
+	};
+	this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick(type, selected) {
+	console.log("parent " + type + " = " + selected);
+	this.setState({ pick: selected ? type : "none" });
+  }
+
   render() {
-	return (
+	console.log("render " + this.state.pick);
+	const buildButton = (type) => {
+	  return (
+		<ShotButton key={type} type={type} selected={this.state.pick===type} onClick={this.handleClick} />
+	  );
+	};
+	console.log("buttons " + this.state.types);
+	return(
 	  <div className="ShotButtons-group">
-		<ShotButton type="2" />
-		<ShotButton type="3" />
-		<ShotButton type="1" />
+		{this.state.types.map(buildButton)}
 	  </div>
 	);
   }
