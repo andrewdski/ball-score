@@ -8,16 +8,12 @@ class ShotButton extends React.Component {
   }
   handleClick(e) {
 	//e.preventDefault();		// do we need this?
-	this.setState(prevState => {
-	  const newSelected = ! prevState.selected;
-	  console.log("click " + this.props.type + " -> " + newSelected);
-	  this.props.onClick(this.props.type, newSelected);
-	  return { "selected": newSelected };
-	});
+	this.props.onClick(this.props.type);
   }
 
   render() {
 	const className = this.props.selected ? "selected" : "unselected";
+	console.log("render " + this.props.type + " = " + className);
 	return (
 	  <button className={className} onClick={this.handleClick}>{this.props.type}</button>
 	);
@@ -34,9 +30,11 @@ export default class ShotButtons extends React.Component {
 	this.handleClick = this.handleClick.bind(this);
   }
 
-  handleClick(type, selected) {
-	console.log("parent " + type + " = " + selected);
-	this.setState({ pick: selected ? type : "none" });
+  handleClick(type) {
+	this.setState(prevState => {
+	  console.log("click " + prevState.pick + " -> " + (prevState.pick === type ? "none" : type));
+	  return { "pick": (prevState.pick === type ? "none" : type) };
+	});
   }
 
   render() {
