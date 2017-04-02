@@ -21,8 +21,6 @@ class ShotButton extends React.Component {
 }
 
 export default class ShotButtons extends React.Component {
-  static types = [ "2", "1", "3" ];
-
   constructor(props) {
 	super(props);
 	this.state = { "pick": "none" };
@@ -43,10 +41,9 @@ export default class ShotButtons extends React.Component {
 		<ShotButton key={type} type={type} selected={this.state.pick===type} onClick={this.handleClick} />
 	  );
 	};
-	console.log("buttons " + ShotButtons.types);
 	return(
 	  <div className="ShotButtons-group">
-		{ShotButtons.types.map(buildButton)}
+		{this.props.types.map(buildButton)}
 	  </div>
 	);
   }

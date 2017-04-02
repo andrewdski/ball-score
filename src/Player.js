@@ -7,7 +7,7 @@ export default class Player extends React.Component {
 	  <tr>
 		<td>{this.props.player.name}</td>
 		<td>{this.props.player.number}</td>
-		<td><ShotButtons /></td>
+		<td><ShotButtons types={["2", "1", "3"]}/></td>
 	  </tr>
 	);
   }
