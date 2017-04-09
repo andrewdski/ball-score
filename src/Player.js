@@ -39,9 +39,9 @@ export default class Player extends React.Component {
 		<td>{this.props.player.name}</td>
 		<td>{this.props.player.number}</td>
 		<td><ShotButtons types={this.props.types} handleBasket={this.handleMadeShot} handleMiss={this.handleMissedShot}/></td>
-		<td><Scoring made={this.state.made["2"]} attempted={this.state.attempted["2"]} /></td>
-		<td><Scoring made={this.state.made["3"]} attempted={this.state.attempted["3"]} /></td>
-		<td><Scoring made={this.state.made["1"]} attempted={this.state.attempted["1"]} /></td>
+		<Scoring made={this.state.made["2"]} attempted={this.state.attempted["2"]} />
+		<Scoring made={this.state.made["3"]} attempted={this.state.attempted["3"]} />
+		<Scoring made={this.state.made["1"]} attempted={this.state.attempted["1"]} />
 	  </tr>
 	);
   }
